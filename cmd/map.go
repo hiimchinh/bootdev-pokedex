@@ -8,6 +8,9 @@ import (
 
 func CommandMap() error {
 	res := pokeapi.GetLocationAreas()
-	fmt.Printf("Res is %v", res)
+	areas := res.Results
+	for _, area := range areas {
+		fmt.Println(area.Name)
+	}
 	return nil
 }
