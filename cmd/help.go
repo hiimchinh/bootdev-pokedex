@@ -1,8 +1,8 @@
-package main
+package cmd
 
 import "fmt"
 
-func commandHelp() error {
+func CommandHelp() error {
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")
 	fmt.Println("")

@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/hiimchinh/bootdev-pokedex/cmd"
 )
 
 type cliCommand struct {
@@ -19,12 +21,17 @@ func main() {
 		"exit": {
 			name:        "exit",
 			description: "Exit the Pokedex",
-			callback:    commandExit,
+			callback:    cmd.CommandExit,
 		},
 		"help": {
 			name:        "help",
 			description: "Showing help",
-			callback:    commandHelp,
+			callback:    cmd.CommandHelp,
+		},
+		"map": {
+			name:        "map",
+			description: "list location areas in pokemon world",
+			callback:    cmd.CommandMap,
 		},
 	}
 	for {
