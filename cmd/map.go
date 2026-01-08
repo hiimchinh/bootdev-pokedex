@@ -6,7 +6,7 @@ import (
 	"github.com/hiimchinh/bootdev-pokedex/internal/pokeapi"
 )
 
-func CommandMap() error {
+func CommandMap(cfg *Config) error {
 	res := pokeapi.GetLocationAreas()
 	areas := res.Results
 	for _, area := range areas {

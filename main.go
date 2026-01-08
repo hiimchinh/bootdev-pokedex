@@ -12,7 +12,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(cfg *cmd.Config) error
 }
 
 func main() {
@@ -34,6 +34,11 @@ func main() {
 			callback:    cmd.CommandMap,
 		},
 	}
+	nextUrl := "https://pokeapi.co/api/v2/location-area"
+	cfg := &cmd.Config{
+		Next:     &nextUrl,
+		Previous: nil,
+	}
 	for {
 		fmt.Print("Pokedex > ")
 		for scanner.Scan() {
@@ -45,7 +50,7 @@ func main() {
 				fmt.Println("Unknown command")
 				break
 			}
-			command.callback()
+			command.callback(cfg)
 			break
 		}
 
