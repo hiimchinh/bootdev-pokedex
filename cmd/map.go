@@ -13,7 +13,7 @@ func CommandMap(cfg *Config) error {
 		fmt.Println(area.Name)
 	}
 
-	nextUrl := res.Next
-	cfg.Next = &nextUrl
+	cfg.Next = res.Next
+	cfg.Previous = res.Previous
 	return nil
 }

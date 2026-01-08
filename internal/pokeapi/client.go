@@ -15,8 +15,8 @@ type LocationArea struct {
 
 type ResLocationAreas struct {
 	Count    int            `json:"count"`
-	Next     string         `json:"next"`
-	Previous any            `json:"previous"`
+	Next     *string        `json:"next"`
+	Previous *string        `json:"previous"`
 	Results  []LocationArea `json:"results"`
 }
 

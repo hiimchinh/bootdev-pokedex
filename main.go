@@ -33,6 +33,11 @@ func main() {
 			description: "list location areas in pokemon world",
 			callback:    cmd.CommandMap,
 		},
+		"mapb": {
+			name:        "map back",
+			description: "list location areas in previous page",
+			callback:    cmd.CommandMapb,
+		},
 	}
 	nextUrl := "https://pokeapi.co/api/v2/location-area"
 	cfg := &cmd.Config{
