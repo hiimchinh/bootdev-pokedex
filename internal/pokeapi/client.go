@@ -20,8 +20,8 @@ type ResLocationAreas struct {
 	Results  []LocationArea `json:"results"`
 }
 
-func GetLocationAreas() ResLocationAreas {
-	res, err := http.Get("https://pokeapi.co/api/v2/location-area")
+func GetLocationAreas(url string) ResLocationAreas {
+	res, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}

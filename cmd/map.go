@@ -7,10 +7,13 @@ import (
 )
 
 func CommandMap(cfg *Config) error {
-	res := pokeapi.GetLocationAreas()
+	res := pokeapi.GetLocationAreas(*cfg.Next)
 	areas := res.Results
 	for _, area := range areas {
 		fmt.Println(area.Name)
 	}
+
+	nextUrl := res.Next
+	cfg.Next = &nextUrl
 	return nil
 }
