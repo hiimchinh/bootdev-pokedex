@@ -47,6 +47,7 @@ func (cache *Cache) reapLoop() {
 			}
 
 		}
+		cache.mux.Unlock()
 	}
 
 }
