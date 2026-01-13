@@ -6,6 +6,8 @@ import (
 	"io"
 	"log"
 	"net/http"
+
+	"github.com/hiimchinh/bootdev-pokedex/internal/pokecache"
 )
 
 type LocationArea struct {
@@ -20,7 +22,17 @@ type ResLocationAreas struct {
 	Results  []LocationArea `json:"results"`
 }
 
-func GetLocationAreas(url string) ResLocationAreas {
+func GetLocationAreas(url string, cache *pokecache.Cache) ResLocationAreas {
+	cacheEntry, ok := cache.Get(url)
+	if ok {
+		locationAreas := ResLocationAreas{}
+		err := json.Unmarshal(cacheEntry, &locationAreas)
+		if err != nil {
+			fmt.Println(err)
+		}
+		return locationAreas
+	}
+
 	res, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
@@ -33,6 +45,7 @@ func GetLocationAreas(url string) ResLocationAreas {
 	if err != nil {
 		log.Fatal(err)
 	}
+	cache.Add(url, body)
 	locationAreas := ResLocationAreas{}
 	err = json.Unmarshal(body, &locationAreas)
 	if err != nil {

@@ -1,8 +1,12 @@
 package cmd
 
-import "fmt"
+import (
+	"fmt"
 
-func CommandHelp(cfg *Config) error {
+	"github.com/hiimchinh/bootdev-pokedex/internal/pokecache"
+)
+
+func CommandHelp(cfg *Config, cache *pokecache.Cache) error {
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")
 	fmt.Println("")

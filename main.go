@@ -7,16 +7,18 @@ import (
 	"strings"
 
 	"github.com/hiimchinh/bootdev-pokedex/cmd"
+	"github.com/hiimchinh/bootdev-pokedex/internal/pokecache"
 )
 
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(cfg *cmd.Config) error
+	callback    func(cfg *cmd.Config, cache *pokecache.Cache) error
 }
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
+	cache := pokecache.NewCache(5)
 	commands := map[string]cliCommand{
 		"exit": {
 			name:        "exit",
@@ -55,7 +57,7 @@ func main() {
 				fmt.Println("Unknown command")
 				break
 			}
-			command.callback(cfg)
+			command.callback(cfg, cache)
 			break
 		}
 
