@@ -7,7 +7,7 @@ import (
 	"github.com/hiimchinh/bootdev-pokedex/internal/pokecache"
 )
 
-func CommandMapb(cfg *Config, cache *pokecache.Cache) error {
+func CommandMapb(cfg *Config, cache *pokecache.Cache, args []string) error {
 	if cfg.Previous == nil {
 		fmt.Println("you're on the first page")
 		return nil

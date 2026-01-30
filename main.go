@@ -13,7 +13,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(cfg *cmd.Config, cache *pokecache.Cache) error
+	callback    func(cfg *cmd.Config, cache *pokecache.Cache, args []string) error
 }
 
 func main() {
@@ -40,6 +40,11 @@ func main() {
 			description: "list location areas in previous page",
 			callback:    cmd.CommandMapb,
 		},
+		"explore": {
+			name:        "explore",
+			description: "list all pokemon in this area",
+			callback:    cmd.CommandExplore,
+		},
 	}
 	nextUrl := "https://pokeapi.co/api/v2/location-area"
 	cfg := &cmd.Config{
@@ -52,12 +57,13 @@ func main() {
 			line := scanner.Text()
 			arr := strings.Fields(line)
 			firstWord := strings.ToLower(arr[0])
+			args := arr[1:]
 			command, ok := commands[firstWord]
 			if !ok {
 				fmt.Println("Unknown command")
 				break
 			}
-			command.callback(cfg, cache)
+			command.callback(cfg, cache, args)
 			break
 		}
 

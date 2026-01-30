@@ -7,7 +7,7 @@ import (
 	"github.com/hiimchinh/bootdev-pokedex/internal/pokecache"
 )
 
-func CommandMap(cfg *Config, cache *pokecache.Cache) error {
+func CommandMap(cfg *Config, cache *pokecache.Cache, args []string) error {
 	res := pokeapi.GetLocationAreas(*cfg.Next, cache)
 	areas := res.Results
 	for _, area := range areas {
